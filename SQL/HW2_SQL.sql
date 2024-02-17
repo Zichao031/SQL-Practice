@@ -127,3 +127,53 @@ SELECT ContactName
 FROM Orders o
 JOIN Customers c ON o.CustomerID = c.CustomerID
 WHERE OrderDate > '1998-01-01'
+
+-- 20.  List the names of all customers with most recent order dates
+SELECT ContactName, MAX(OrderDate)
+FROM Customers c
+LEFT JOIN Orders o ON c.CustomerID = o.CustomerID
+GROUP BY ContactName
+
+-- 21.  Display the names of all customers  along with the  count of products they bought
+SELECT ContactName, SUM(Quantity) AS TotalProductBought
+FROM Customers c
+LEFT JOIN Orders o ON c.CustomerID = o.CustomerID JOIN [Order Details] od ON od.OrderID = o.OrderID
+GROUP BY ContactName
+
+-- 22.  Display the customer ids who bought more than 100 Products with count of products.
+SELECT o.CustomerID, SUM(Quantity) AS TotalProductBought
+FROM Orders o JOIN [Order Details] od ON od.OrderID = o.OrderID
+GROUP BY o.CustomerID HAVING SUM(Quantity) > 100
+
+-- 23.  List all of the possible ways that suppliers can ship their products. Display the results as below
+    -- Supplier Company Name                Shipping Company Name
+SELECT supply.CompanyName, ship.CompanyName
+FROM Shippers ship
+CROSS JOIN Suppliers supply
+
+-- 24.  Display the products order each day. Show Order date and Product Name.
+SELECT OrderDate, ProductName
+FROM Orders o JOIN [Order Details] od ON od.OrderID = o.OrderID JOIN Products p ON p.ProductID = od.ProductID
+
+-- 25.  Displays pairs of employees who have the same job title.
+SELECT e1.FirstName + ' ' + e1.LastName AS employees1, e2.FirstName + ' '+ e2.LastName AS employees1
+FROM Employees e1 JOIN Employees e2 ON e1.Title = e2.Title
+WHERE e1.EmployeeID < e2.EmployeeID
+
+-- 26.  Display all the Managers who have more than 2 employees reporting to them.
+SELECT m.EmployeeID, m.FirstName, m.LastName, COUNT(e1.EmployeeID)
+FROM Employees e1, Employees m
+WHERE e1.ReportsTo = m.EmployeeID
+GROUP BY m.EmployeeID, m.FirstName, m.LastName HAVING COUNT(e1.EmployeeID) > 2
+
+-- 27.  Display the customers and suppliers by city. The results should have the following columns
+SELECT City, CompanyName, ContactName, Relationship AS Type
+FROM [Customer and Suppliers by City]
+-- City
+
+-- Name
+
+-- Contact Name,
+
+-- Type (Customer or Supplier)
+
