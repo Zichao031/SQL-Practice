@@ -1,0 +1,61 @@
+02 Introduction to C# and Data Types
+Understanding Data Types
+Test your Knowledge
+
+1. What type would you choose for the following “numbers”?
+A person’s telephone number -> string
+A person’s height -> string
+A person’s age -> int
+A person’s gender (Male, Female, Prefer Not To Answer) -> string
+A person’s salary -> double
+A book’s ISBN -> string
+A book’s price -> double
+A book’s shipping weight -> double
+A country’s population -> int
+The number of stars in the universe -> long
+The number of employees in each of the small or medium businesses in the -> int
+United Kingdom (up to about 50,000 employees per business) -> int
+
+2. What are the difference between value type and reference type variables? 
+    What is boxing and unboxing? 
+    a. value type vs reference type:
+        1. definition:
+            - value type: stores the actual data
+            - reference type: stores the memory address where the data stored
+        2. Stored in:
+            - value: stored in the stack memory
+            - reference: stored in heap memory
+        3. Garbage Collector:
+            - value: will NOT be collected by Garbage Collector
+            - reference type: will be collected
+        4. Null:
+            - value: do NOT accept null value
+            - reference: accepts
+        5. created by:
+            - value type: by enum, struct
+            - reference type: by class, interface, delegate, array
+    b. boxing & unboxing: like wrapper class in Java
+        1. boxing: convert value to object
+            example: object o = 9;
+        2. unboxing: convert object to value;
+            example: int i = (int) o;
+
+3. What is meant by the terms managed resource and unmanaged resource in .NET
+    Two parts in heap memory:
+        - managed heap
+        - Unmanaged heap: call Dispose() from IDisposable interface
+
+4. Whats the purpose of Garbage Collector in .NET?
+    The Garbage Collector (GC) in .NET is a memory management component that automatically deallocates memory occupied by objects that are no longer in use. 
+    Its primary purpose is to:  
+        handle memory management, 
+        ensuring efficient use of resources, 
+        preventing memory leaks,
+        simplifying memory-related tasks for developers.
+
+02 Arrays and Strings
+1. When to use String vs StringBuilder in C#?
+    String: immutable, it's good to store sensitive data like username and password
+    StringBuilder: mutable, it's good to store data that needed to be changed
+2. What is the base class for all arrays in C#?
+    Objects: 
